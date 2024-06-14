@@ -1,33 +1,16 @@
-import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
-import prettier from "eslint-config-prettier";
-import hooks from "eslint-plugin-react-hooks";
-import refresh from "eslint-plugin-react-refresh";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 
-import { fixupPluginRules } from "@eslint/compat";
-
-export default [
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   {
-    files: ["**/*.{ts,tsx,js,jsx,mjs,cjs}"],
-    ignores: ["vite.config.ts", "dist"],
-    plugins: {
-      "react-refresh": fixupPluginRules(refresh),
-      "react-hooks": fixupPluginRules(hooks),
-    },
     languageOptions: {
-      parser: tsParser,
-      globals: {
-        ...globals.browser,
-        ...globals.es2020,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-    rules: {
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-    },
-  },
-  "react-hooks/recommended",
-  prettier,
-];
+  }
+);
