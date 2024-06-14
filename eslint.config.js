@@ -1,5 +1,6 @@
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import { configs } from '@tanstack/eslint-plugin-query'
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -12,5 +13,11 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    plugins: {
+      query: configs.recommended,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+    },
   }
-);
+)

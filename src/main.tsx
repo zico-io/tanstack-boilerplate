@@ -1,7 +1,26 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import '@/index.css'
+
+import { routeTree } from './routeTree.gen'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
+
+const router = createRouter({
+  routeTree,
+  context: {
+    queryClient,
+  },
+  defaultPreload: 'intent',
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 const rootElement = document.getElementById('app') as HTMLDivElement
 if (!rootElement.innerHTML) {
@@ -9,7 +28,9 @@ if (!rootElement.innerHTML) {
 
   root.render(
     <StrictMode>
-      <App />
-    </StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </StrictMode>,
   )
 }

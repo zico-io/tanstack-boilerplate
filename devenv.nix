@@ -5,7 +5,6 @@
   cachix.enable = false;
   packages = with pkgs; [ git corepack nodejs-slim jq ];
   languages = {
-    nix.enable = true;
     typescript.enable = true;
   };
 
