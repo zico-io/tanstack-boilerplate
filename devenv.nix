@@ -2,9 +2,10 @@
 
 {
   cachix.enable = false;
-  packages = with pkgs; [ git corepack_latest ];
-  languages.typescript = {
-    enable = true;
+  packages = with pkgs; [ git corepack nodejs-slim jq ];
+  languages = {
+    nix.enable = true;
+    typescript.enable = true;
   };
 
   enterShell = ''
