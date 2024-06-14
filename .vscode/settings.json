@@ -1,0 +1,28 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/devenv.lock": true,
+    "**/devenv.yaml": true,
+    "**/pnpm-lock.yaml": true,
+    "**/.devenv.flake.nix": true,
+    "**/.direnv": true,
+    "**/.devenv": true,
+    "**/node_modules": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
