@@ -12,7 +12,6 @@
   "dependencies": {
     "@tanstack/react-query": "^5.45.0",
     "@tanstack/react-router": "^1.36.3",
-    "antd": "^5.18.1",
     "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
