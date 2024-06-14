@@ -20,6 +20,7 @@
     "**/.devenv.flake.nix": true,
     "**/.direnv": true,
     "**/.devenv": true,
+    "**/.eslintcache": true,
     "**/node_modules": true
   },
   "files.associations": {

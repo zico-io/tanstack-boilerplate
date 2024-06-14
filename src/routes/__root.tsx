@@ -4,9 +4,9 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
 export const Route = createRootRouteWithContext<IRouterContext>()({
   component: () => (
-    <>
+    <main>
       <Outlet />
       <TanStackRouterDevtools />
-    </>
+    </main>
   ),
 })
