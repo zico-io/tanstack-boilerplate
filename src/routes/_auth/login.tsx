@@ -14,6 +14,8 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAxios, isAxiosError } from '@/lib/axios'
+import { persistQueryClientSubscribe } from '@tanstack/react-query-persist-client'
+import { localStoragePersister } from '@/lib/query'
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -41,9 +43,13 @@ export const Route = createFileRoute('/_auth/login')({
           .post(`/account/sessions/email`, data, {
             withCredentials: true,
           })
-          .then((res) =>
-            queryClient.setQueryData(['account/sessions/current'], res.data),
-          )
+          .then((res) => {
+            queryClient.setQueryData(['account/sessions/current'], res.data)
+            persistQueryClientSubscribe({
+              queryClient,
+              persister: localStoragePersister,
+            })
+          })
           .catch((e: unknown) => {
             if (isAxiosError(e)) {
               if (e.status === 401) throw new Error('Invalid credentials')

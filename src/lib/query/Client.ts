@@ -16,6 +16,7 @@ export const queryClient = new QueryClient({
     queries: {
       queryFn: defaultQueryFn,
       staleTime: 1000 * 60 * 60 * 24,
+      gcTime: 1000 * 60 * 60 * 24,
       retry: false,
     },
   },

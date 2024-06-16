@@ -1,8 +1,11 @@
-import { Outlet, createFileRoute } from '@tanstack/react-router'
+import { persistQueryClientRestore } from '@tanstack/react-query-persist-client'
+import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth')({
-  beforeLoad: async ({ context: { queryClient } }) => {
-    await queryClient.getQueryData(['session'])
+  loader: async ({ context: { queryClient, persister } }) => {
+    await persistQueryClientRestore({ queryClient, persister })
+    const session = queryClient.getQueryData(['account/sessions/current'])
+    if (session) throw redirect({ to: '/dashboard' })
   },
   component: () => {
     return (
