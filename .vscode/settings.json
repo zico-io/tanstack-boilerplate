@@ -22,7 +22,8 @@
     "**/.devenv": true,
     "**/.envrc": true,
     "**/.eslintcache": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/devenv.nix": true
   },
   "files.associations": {
     "*.css": "tailwindcss"

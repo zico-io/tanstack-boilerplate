@@ -6,6 +6,12 @@ export const router = createRouter({
   routeTree,
   context: {
     queryClient,
+
+    /* eslint-disable */
+    auth: undefined!,
+    // Defined on initialization in main.tsx
+    // TODO: Find a way to make this typesafe
+    /* eslint-enable */
   },
   defaultPreload: 'intent',
 })
